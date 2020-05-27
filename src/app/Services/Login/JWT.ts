@@ -1,9 +1,9 @@
 import { IJWT } from './IJWT';
+import { IJWT_User } from './IJWT_User';
 
 export class JWT {
   constructor(
-    private name: string,
-    private hash: string
+    public data: IJWT_User
   ) {
   }
 }

@@ -1,15 +1,20 @@
 import { Injectable } from '@angular/core';
 import { Authorization } from './authorization';
-import { JWT } from './JWT';
+import { Observable } from 'rxjs';
+import { IJWT } from './IJWT';
 
 @Injectable()
 export class AuthRepository {
-  private token: JWT;
+  private token: Observable<IJWT>;
+
   constructor(private auth: Authorization) {
   }
+
   public login(username: string, password: string): void {
-    this.auth.login(username, password).subscribe(response => {
-      console.log(response);
-    })
+    this.token = this.auth.login(username, password);
+  }
+
+  public get getToken(): Observable<IJWT> {
+    return this.token;
   }
 }
