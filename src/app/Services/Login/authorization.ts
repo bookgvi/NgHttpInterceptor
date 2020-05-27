@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { JWT } from './JWT'
+import { JWT } from '../../Model/Login/JWT'
 import { Observable, of } from 'rxjs';
-import { IJWT } from './IJWT';
+import { IJWT } from '../../Model/Login/IJWT';
 import { delay, mergeMap, switchMap } from 'rxjs/operators';
 import { BASE_URL } from '../../Constants/backendURLs';
 

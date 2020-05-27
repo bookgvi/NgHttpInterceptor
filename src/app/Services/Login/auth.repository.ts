@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Authorization } from './authorization';
 import { Observable } from 'rxjs';
-import { IJWT } from './IJWT';
+import { IJWT } from '../../Model/Login/IJWT';
 
 @Injectable()
 export class AuthRepository implements IJWT {

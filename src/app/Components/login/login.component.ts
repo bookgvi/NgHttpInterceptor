@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthRepository } from '../../Services/Login/auth.repository';
-import { IJWT } from '../../Services/Login/IJWT';
+import { IJWT } from '../../Model/Login/IJWT';
 
 @Component({
   selector: 'app-login',
