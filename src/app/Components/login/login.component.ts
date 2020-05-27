@@ -13,7 +13,7 @@ export class LoginComponent implements OnInit {
     if (auth.getToken) {
       auth.getToken.subscribe(token => {
         if (auth.instanceOfIJWT(token))
-          console.log(token);
+          window.localStorage.setItem('jwt', token['access_token']);
       })
     }
   }
