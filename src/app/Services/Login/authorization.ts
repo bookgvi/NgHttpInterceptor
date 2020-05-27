@@ -4,10 +4,11 @@ import { JWT } from './JWT'
 import { Observable, of } from 'rxjs';
 import { IJWT } from './IJWT';
 import { delay, mergeMap, switchMap } from 'rxjs/operators';
+import { BASE_URL } from '../../Constants/backendURLs';
 
 @Injectable()
 export class Authorization {
-  private LOGIN_URL: string = 'https://pre.ugoloc.ucann.ru/api/auth/login';
+  private LOGIN_URL: string = `${BASE_URL}/auth/login`;
   private token: IJWT;
 
   constructor(private http: HttpClient) {
