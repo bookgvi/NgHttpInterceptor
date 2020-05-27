@@ -2,6 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 
+import { ProvideInterceptors } from './Services/Interceptors/provideInterceptors'
+
 import { LoginModule } from './Modules/login.module';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -19,7 +21,7 @@ import { BookingsComponent } from './Components/bookings/bookings.component';
     HttpClientModule,
     LoginModule
   ],
-  providers: [],
+  providers: [ProvideInterceptors],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

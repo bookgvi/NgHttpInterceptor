@@ -11,9 +11,14 @@ import { BookingsDataSource } from '../../Services/Bookings/bookings.dataSource'
 export class BookingsComponent implements OnInit {
 
   constructor(private repo: BookingsRepository) {
-    repo.getBookingsResponse.subscribe(resp => {
-      console.log(resp);
-    });
+    repo.getBookingsResponse.subscribe(
+      resp => {
+        console.log(resp);
+      },
+      error => {
+        console.warn('(component) Bookings error: ', error);
+      }
+    );
   }
 
   ngOnInit() {

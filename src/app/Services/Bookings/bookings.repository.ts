@@ -9,12 +9,7 @@ export class BookingsRepository {
   private readonly bookingsResponse: Observable<Bookings>;
 
   constructor(private dataSource: BookingsDataSource) {
-    this.bookingsResponse = dataSource.getBookingsResponse
-      .pipe(
-        mergeMap(response => {
-          return of(response);
-        })
-      );
+    this.bookingsResponse = dataSource.getBookingsResponse;
   }
 
   public get getBookingsResponse(): Observable<Bookings> {
