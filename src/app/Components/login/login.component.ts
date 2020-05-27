@@ -8,20 +8,16 @@ import { IJWT } from '../../Services/Login/IJWT';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-
   constructor(private auth: AuthRepository) {
     auth.login('artem', '123456');
     if (auth.getToken) {
       auth.getToken.subscribe(token => {
-        console.log(token);
+        if (auth.instanceOfIJWT(token))
+          console.log(token);
       })
     }
   }
 
-  private instanceOf(obj: Object): obj is IJWT {
-    return 'token_type' in obj
-  }
   ngOnInit() {
   }
-
 }

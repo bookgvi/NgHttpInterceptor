@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { IJWT } from './IJWT';
 
 @Injectable()
-export class AuthRepository {
+export class AuthRepository implements IJWT {
   private token: Observable<IJWT>;
 
   constructor(private auth: Authorization) {
@@ -16,5 +16,9 @@ export class AuthRepository {
 
   public get getToken(): Observable<IJWT> {
     return this.token;
+  }
+
+  public instanceOfIJWT(obj: Object): obj is IJWT {
+    return 'token_type' in obj
   }
 }
