@@ -9,29 +9,11 @@ import { BASE_URL } from '../../Constants/backendURLs';
 @Injectable()
 export class Authorization {
   private LOGIN_URL: string = `${BASE_URL}/auth/login`;
-  private token: IJWT;
 
   constructor(private http: HttpClient) {
   }
 
-  public login(username: string, password: string): Observable<any> {
-    return this.http.post<JWT>(this.LOGIN_URL, { login: username, password })
-      .pipe(
-        delay(300),
-        mergeMap(({ data }) => {
-          this.token = this.setToken(new JWT(data));
-          return of(this.token, data.user);
-        })
-      )
-  }
-
-  private setToken(token: JWT): IJWT {
-    const { token_type, access_token, expires_at } = { ...token['data'] };
-    const jwt = {
-      token_type,
-      access_token,
-      expires_at
-    }
-    return jwt;
+  public login(login: string, password: string): Observable<any> {
+    return this.http.post<JWT>(this.LOGIN_URL, { login, password });
   }
 }
