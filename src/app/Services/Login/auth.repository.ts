@@ -16,7 +16,7 @@ export class AuthRepository implements IJWT {
   public login(username: string, password: string): void {
     this.tokenObservable = this.auth.login(username, password)
       .pipe(
-        delay(300),
+        delay(1000),
         mergeMap(({ data }) => {
           this.token = this.setToken(new JWT(data));
           return of(this.token, data.user);
