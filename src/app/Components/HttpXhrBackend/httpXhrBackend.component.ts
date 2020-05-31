@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient, HttpEvent, HttpRequest, HttpResponse, HttpXhrBackend } from '@angular/common/http';
+import { HttpClient, HttpEvent, HttpHandler, HttpRequest, HttpResponse, HttpXhrBackend } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { InterceptorsHandlerService } from '../../Services/Interceptors/interceptors.handler.service';
+import { RequestInterceptor } from '../../Services/Interceptors/request.interceptor';
 
 @Component({
   selector: 'app-http-xhr-backend',
@@ -18,7 +20,9 @@ export class HttpXhrBackendComponent implements OnInit {
   }
 
   ngOnInit() {
-    const req = new HttpRequest('GET', this.url); // Этот запрос проходит мимо стандартных интерсепторов
-    this.resp = this.backend.handle(req);
+    const req = new HttpRequest('GET', this.url);
+    const handler: HttpHandler = new InterceptorsHandlerService(this.backend, new RequestInterceptor());
+    this.resp = this.backend.handle(req); // Этот запрос проходит мимо стандартных интерсепторов
+    this.resp = handler.handle(req); // А в этот запрос вручную добавлен интерсептор
   }
 }
